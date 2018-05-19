@@ -159,7 +159,7 @@ exports.randomplay = (req, res, next) => {
 
     req.session.randomPlay = req.session.randomPlay || [];
 
-    var score = req.session.randomPlay.lenght ;
+    var score = req.session.randomPlay.lenght || 0;
 
     const whereOpt = {id: {[Sequelize.Op.notIn] : req.session.randomPlay}} ;
 
@@ -211,7 +211,7 @@ exports.randomcheck = (req, res, next) => {
         }
     }
 
-    const score = req.session.randomPlay.length;
+    var score = req.session.randomPlay.length;
 
     if (!result) {
         req.session.randomPlay = [];
