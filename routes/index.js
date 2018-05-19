@@ -14,6 +14,7 @@ router.get('/author', (req, res, next) => {
 });
 
 
+
 // Autoload for routes using :quizId
 router.param('quizId', quizController.load);
 
@@ -30,5 +31,9 @@ router.delete('/quizzes/:quizId(\\d+)',    quizController.destroy);
 router.get('/quizzes/:quizId(\\d+)/play',  quizController.play);
 router.get('/quizzes/:quizId(\\d+)/check', quizController.check);
 
+// Random play
+router.get('/quizzes/random_play', quizController.randomplay);
+// Random check
+router.get('/quizzes/:quizId(\\d+)/random_check', quizController.randomcheck);
 
 module.exports = router;
