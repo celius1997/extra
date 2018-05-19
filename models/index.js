@@ -20,7 +20,7 @@ sequelize.import(path.join(__dirname, 'quiz'));
 sequelize.import(path.join(__dirname,'session'));
 
 // Create tables
-sequelize.sync()
+/*sequelize.sync()
     .then(()=> sequelize.models.quiz.count())
     .then(count =>{
         if(!count) {
@@ -39,7 +39,14 @@ sequelize.sync()
 .catch(error => {
     console.log("Error creating the data base tables:", error);
     process.exit(1);
-});
+});*/
 
+// Create tables
+sequelize.sync()
+    .then(() => console.log('Data Bases created successfully'))
+    .catch(error => {
+        console.log("Error creating the data base tables:", error);
+        process.exit(1);
+    });
 
 module.exports = sequelize;
