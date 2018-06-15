@@ -229,9 +229,12 @@ exports.check = (req, res, next) => {
 // GET /quizzes/:quizId/random_play
 exports.randomplay = (req, res, next) => {
 
+    const {quiz, query} = req;
+    const level = query.level;
+
     req.session.randomPlay = req.session.randomPlay || [];
 
-    var score = req.session.randomPlay.lenght || 0;
+    var score = req.session.randomPlay.length || 0;
 
     const whereOpt = {id: {[Sequelize.Op.notIn] : req.session.randomPlay}} ;
 
@@ -248,20 +251,32 @@ exports.randomplay = (req, res, next) => {
                 })
         })
         .then(quiz => {
-            if(quiz === undefined) {
 
+            if(quiz === undefined){
                 req.session.randomPlay = [];
                 res.render('quizzes/random_nomore', {
-                    score: score
+                    score
                 });
+            }else{
+                models.quiz.findById(quiz.id, {
+                    include:[ {model: models.tip, include:[{model:models.user, as:'author'}]},
+                        {model:models.user, as:'author'} ]
+                }
+                    )
+                    .then(quiz => {
 
-            } else {
+                        res.render('quizzes/random_play', {
+                            quiz,
+                            score,
+                            level
 
-                res.render('quizzes/random_play', {
-                    quiz: quiz,
-                    score: score
-                });
+                        });
+
+                    })
+
             }
+
+
         })
         .catch(error => next(error));
 };

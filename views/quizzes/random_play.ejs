@@ -6,10 +6,17 @@
     Successful answers = <span id="score"><%= score %></span>
 </div>
 
+<% var tips = quiz.tips; %>
+<% var quizId = quiz.id; %>
+<% var quizAuthorId = quiz.authorId; %>
+
+
 <form method="get" action="/quizzes/randomcheck/<%= quiz.id %>">
 
     <p>
-        Question: <b><%= quiz.question %></b>
+        Question: <b><%= quiz.question %></b> <small> ( by <%= quiz.author ? quiz.author.username : "Anonymous"  %>) </small>
+
+
     </p>
 
 
@@ -19,3 +26,17 @@
     </div>
 </form>
 
+
+<% if(level === "easy"){ %>
+
+<h1>
+    Tips:
+</h1>
+
+
+<% include ../tips/index %>
+
+<%} else {%>
+
+<h3>Has elegido el modo difícil, no tienes pistas </h3>
+<%}%>

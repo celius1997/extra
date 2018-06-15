@@ -37,9 +37,12 @@ body {
 }
 
 a {
-    color: #00B7FF;
+    color: #008080;
 }
 
+h3{
+    font-size: medium;
+}
 .right {
     float: right;
 }
@@ -62,12 +65,12 @@ a {
 
 #flashinfo {
     width: auto;
-    border: 2px solid blue;
+    border: 2px solid #4169E1;
     padding: 7px;
     padding-bottom: 0;
     margin-bottom: 20px;
     background-color: #f0f0f0;
-    color: #000;
+    color: #708090;
 }
 
 #flashinfo h3 {
@@ -95,7 +98,7 @@ a {
     padding-bottom: 0;
     margin-bottom: 20px;
     background-color: #f0f0f0;
-    color: #000;
+    color: #708090;
 }
 
 #flashsuccess h3 {
@@ -121,7 +124,7 @@ a {
     padding-bottom: 0;
     margin-bottom: 20px;
     background-color: #f0f0f0;
-    color: #000;
+    color: #708090;
 }
 
 #flasherror h3 {

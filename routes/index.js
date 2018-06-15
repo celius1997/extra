@@ -6,6 +6,7 @@ const tipController = require('../controllers/tip');
 const userController = require('../controllers/user');
 const sessionController = require('../controllers/session');
 
+
 //-----------------------------------------------------------
 
 // autologout
@@ -88,10 +89,11 @@ router.delete('/users/:userId(\\d+)',
     sessionController.loginRequired,
     sessionController.adminOrMyselfRequired,
 	userController.destroy);
-
 router.get('/users/:userId(\\d+)/quizzes',
     sessionController.loginRequired,
     quizController.index);
+
+
 
 
 // Routes for the resource /quizzes
